@@ -5,7 +5,7 @@ from app.database import Base
 class Log(Base):
     __tablename__ = "logs"
     id = Column(Integer, primary_key=True, index=True)
-    service = Column(String(100), index=True)
-    level = Column(String(20), index=True)
-    message = Column(String)
+    service = Column(String(100), index=True, nullable=False)
+    level = Column(String(20), index=True, nullable=False)
+    message = Column(String, nullable=False)
     timestamp = Column(DateTime, default=datetime.utcnow)
