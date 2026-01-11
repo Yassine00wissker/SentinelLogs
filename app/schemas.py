@@ -19,8 +19,25 @@ class LogCreate(BaseModel):
             "error": "ERROR",
             "critical": "ERROR"
         }
-        return level_map[v.lower(), "INFO"]
+        return level_map.get(str(v).lower(), "INFO")
 
     @validator("timestamp", pre=True, always=True)
     def set_timestamp(cle, v):
         return v or datetime.utcnow()
+
+class LogResponse(BaseModel):
+    id: int
+    service: str
+    level: str
+    message: str
+    timestamp: datetime
+
+    class Config:
+        orm_mode = True
+
+class LogQuery(BaseModel):
+    level: Optional[str] = None
+    service: Optional[str] = None
+    keyword: Optional[str] = None
+    start: Optional[datetime] = None
+    end: Optional[datetime] = None
