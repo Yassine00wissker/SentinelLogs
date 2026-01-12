@@ -1,15 +1,16 @@
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator
 from datetime import datetime
 from typing import Literal, Optional
 
 class LogCreate(BaseModel):
-    service: str = Field(..., example="auth-service")
-    level: str = Field(..., example="info")
+    service: str = Field(..., json_schema_extra={"example":"auth-service"})
+    level: str = Field(..., json_schema_extra={"example":"info"})
     message: str
     timestamp: Optional[datetime] = None
 
-    @validator("level", pre=True)
-    def normalize_level(cle,v):
+    @field_validator("level", mode="before")
+    @classmethod
+    def normalize_level(cls,v):
         level_map = {
             "info": "INFO",
             "information": "INFO",
@@ -21,8 +22,9 @@ class LogCreate(BaseModel):
         }
         return level_map.get(str(v).lower(), "INFO")
 
-    @validator("timestamp", pre=True, always=True)
-    def set_timestamp(cle, v):
+    @field_validator("timestamp", mode="before")
+    @classmethod
+    def set_timestamp(cls, v):
         return v or datetime.utcnow()
 
 class LogResponse(BaseModel):
@@ -32,8 +34,7 @@ class LogResponse(BaseModel):
     message: str
     timestamp: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = {"from_attributes":True}
 
 class LogQuery(BaseModel):
     level: Optional[str] = None

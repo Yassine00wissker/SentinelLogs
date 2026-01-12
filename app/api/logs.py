@@ -11,7 +11,7 @@ router = APIRouter(
     )
 
 
-@router.post("/")
+@router.post("/", status_code=201)
 def ingest_log(log : LogCreate, db: Session = Depends(get_db)):
     db_log  = Log(
         service=log.service,
@@ -22,11 +22,7 @@ def ingest_log(log : LogCreate, db: Session = Depends(get_db)):
     db.add(db_log)
     db.commit()
     db.refresh(db_log)
-    return {
-        "status": "saved",
-        "message": "Log is saved successfuly",
-        "log": db_log .id
-    }
+    return  db_log
 
 @router.get("/", response_model=list[LogResponse])
 def get_log(query: LogQuery = Depends(),
