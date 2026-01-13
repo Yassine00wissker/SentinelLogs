@@ -24,3 +24,14 @@ def test_create_log():
 
     assert response.status_code == 201
     assert response.json()["service"] == "auth-service"
+
+
+def test_get_metrics():
+    response = client.get("/metrics")
+    assert response.status_code == 200
+    assert isinstance(response.json(), dict)
+    
+def test_get_metrics_content():
+    data = client.get("/metrics").json()
+    assert "total_logs" in data
+    assert "error_rate" in data
