@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from app.dependencies import get_db
 from app.api.metrics import get_metrics
-from app.Baseline.baseline_detector import detect_anomalies
+from app.Anomaly.anomaly_engine import detect_anomalies
 from app.Baseline.baseline_model import Baseline
 
 router = APIRouter()
