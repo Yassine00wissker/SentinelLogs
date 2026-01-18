@@ -1,9 +1,10 @@
 from fastapi.testclient import TestClient
 from app.main import app
-
+from app.api import baseline
 client = TestClient(app)
 
 def test_check_baseline_without_setting():
+    baseline.BASELINE = None # reset global state
     response = client.get("/baseline/check")
 
     assert response.status_code == 200

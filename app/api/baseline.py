@@ -3,6 +3,9 @@ from app.dependencies import get_db
 from app.api.metrics import get_metrics
 from app.Anomaly.anomaly_engine import detect_anomalies
 from app.Baseline.baseline_model import Baseline
+from app.Alert.alert_engine import apply_alert_rules
+from app.Alert.default_rules import DEFAULT_RULES
+
 
 router = APIRouter()
 
@@ -22,7 +25,10 @@ def check_baseline(db=Depends(get_db)):
     current_metrics = get_metrics(db)
     anomalies = detect_anomalies(current_metrics, BASELINE)
 
+    alerts = apply_alert_rules(anomalies, DEFAULT_RULES)
+    
     return {
+        "alerts": alerts,
         "anomalies": anomalies,
         "current_metrics": {
             "error_rate": current_metrics["error_rate"],
