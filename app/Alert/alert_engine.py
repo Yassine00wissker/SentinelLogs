@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from app.Alert.severity_order import severity_allowed
-
+from app.Alert.alert_delivery import deliver_alert
 LAST_ALERT = {}
 
 def apply_alert_rules(anomalies, rules):
@@ -24,7 +24,10 @@ def apply_alert_rules(anomalies, rules):
             if last_time:
                 if now - last_time < timedelta(minutes=rule.cooldown_minutes):
                     continue
-
+            alert = anomaly
+            
             LAST_ALERT[key] = now
             alerts.append(anomaly)
+
+            deliver_alert(alert, channel="console")
     return alerts

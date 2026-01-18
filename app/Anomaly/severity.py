@@ -1,4 +1,7 @@
 def calculate_severity(value: float, threshold: float) -> str:
+    if threshold <= 0:
+        return "LOW"
+     
     ratio = value / threshold
 
     if ratio >= 3:
