@@ -15,6 +15,15 @@ logs in real time, detect abnormal behavior, and receive alerts before incidents
 - Lose time debugging production issues
 - Lack visibility into application behavior
 
+## This system now includes:
+
+✔ Baseline learning
+✔ Anomaly detection
+✔ Severity scoring
+✔ Rule-based alerting
+✔ Cooldown & deduplication
+✔ Real-time API testing
+
 ## 🛠️ Tech Stack
 
 ### Backend
