@@ -24,7 +24,7 @@ def detect_anomalies(metrics: dict, baseline):
 
     # --- ERROR RATE ---
     error_rate = metrics["error_rate"]
-    threshold = baseline.avg_error_rate + 5
+    threshold = max ( baseline.avg_error_rate * 2 , 0.2 )
 
     if error_rate > threshold:
         anomalies.append(
