@@ -41,7 +41,7 @@ logs in real time, detect abnormal behavior, and receive alerts before incidents
 - Docker Compose
 
 ### Database
-- SQLite / PostgreSQL
+- PostgreSQL
 
 ### Monitoring
 - Log aggregation
