@@ -39,6 +39,7 @@ def get_metrics(db:Session = Depends(get_db)):
         df.set_index("timestamp")
         .resample("1min")
         .size()
+        .loc[lambda x: x > 0]
         .rename(lambda x: x.strftime("%Y-%m-%d %H:%M"))
         .to_dict()
     )
