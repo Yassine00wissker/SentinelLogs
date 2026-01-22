@@ -52,7 +52,7 @@ def summary(db: Session = Depends(get_db)):
 
     return {
         "status":status,
-        "totale_logs": metrics["total_logs"],
+        "total_logs": metrics["total_logs"],
         "error_rate": metrics["error_rate"],
         "active_alerts": len(alerts),
         "anomalies_detected": len(anomalies),
