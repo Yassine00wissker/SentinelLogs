@@ -1,49 +1,71 @@
-# SentinelLogs
-The Intelligent Log Monitoring & Anomaly Detection System is a Python-based platform designed to help teams monitor application
-logs in real time, detect abnormal behavior, and receive alerts before incidents impact users .
+# SentinelLogs 
+Intelligent Log Monitoring, Anomaly Detection & Alerting System SentinelLogs is an intelligent monitoring platform that analyzes application logs in real time,
+detects anomalous behavior, and generates actionable alerts before incidents impact users.
+The project is inspired by real-world monitoring tools (Grafana, Datadog, Prometheus) and focuses on how alerts are detected, managed, and visualized, not just logged.
 
----
+## The Problem
+ **Modern applications generate thousands of logs per day:**
+ * Errors are hidden inside log noise
+   
+ * Manual log inspection is slow and unreliable
+   
+ * Alerts are often triggered after outages
+   
+### Without intelligent monitoring, teams:
+ * React instead of preventing incidents
 
-## Modern applications generate thousands of logs per day:
+ * Lose time debugging production issues
 
-- Errors are hidden inside log noise
-- Manual log inspection is slow and unreliable
-- Alerts are often triggered only after outages
+ * Lack visibility into application behavior
+
+## What SentinelLogs Solves
+**SentinelLogs continuously analyzes metrics derived from logs and provides:**
+
+* Early anomaly detection
+
+* Severity-based alerting
+
+* Real-time dashboard visibility
+
+* Alert history & lifecycle tracking
+
+ ## Core Features
+ ###Metrics Monitoring
+
+* Logs per minute
+
+* Error rate tracking
+
+* Time-series aggregation
+
+### Anomaly Detection
+* Log volume spikes
   
-## Without intelligent monitoring, teams:
-- React instead of preventing incidents
-- Lose time debugging production issues
-- Lack visibility into application behavior
+* Error rate spikes
+  
+* Baseline comparison
 
-## This system now includes:
+* Dynamic severity scoring (LOW → CRITICAL)
 
-✔ Baseline learning
-✔ Anomaly detection
-✔ Severity scoring
-✔ Rule-based alerting
-✔ Cooldown & deduplication
-✔ Real-time API testing
+### Alerting Engine
+* Rule-based alerts
 
-## 🛠️ Tech Stack
+* Severity thresholds
 
-### Backend
-- Python 
-- FastAPI
-- REST APIs
+* Cooldown & deduplication
 
-### Data Processing
-- Pandas
-- NumPy
-- Time-series analysis
+###Alert lifecycle:
+* OPEN (active anomaly)
 
-### Infrastructure
-- Docker
-- Docker Compose
+* RESOLVED (anomaly disappeared)
 
-### Database
-- PostgreSQL
+### Dashboard
+* Metrics summary
 
-### Monitoring
-- Log aggregation
-- Alerting rules
-- Dashboard (basic)
+* Live charts
+
+* Active alerts panel (shown only when alerts exist)
+
+* Alert history (historique)
+
+* Clean UI with Tailwind CSS and nextJS
